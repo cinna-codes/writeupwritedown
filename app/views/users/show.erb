@@ -1,8 +1,5 @@
 <h2><%= "#{@user.username}'s Profile" %></h2>
 <h3>Total Words: <%=@wordcounts.map { |wc| wc.count }.sum%></h3>
-<% if Helpers.current_user(session) == @user %>
-     <h4><a href="/counts/new">New Entry?</a></h4>
-<% end %>
 <p></p>
     <% @wordcounts.each do |wcount| %>
     <p><%="#{wcount.month}/#{wcount.day}/#{wcount.year} — #{wcount.count}"%> <% if Helpers.current_user(session) == @user %>
