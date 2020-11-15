@@ -21,8 +21,6 @@ class WordcountsController < ApplicationController
     post '/counts' do
         if !Helpers.logged_in?(session)
             redirect "/login"
-        # elsif Helpers.current_user(session).id != params[:user_id]
-        #     redirect "/counts/new"
         elsif !params.select { |k,v| v.empty? }.empty? # CHECK IF ANY FIELDS ARE EMPTY: having empty fields returns "FALSE" and NO empty fields returns "TRUE"
             redirect "/counts/new"
         else # Helpers.current_user(session).id == params[:user_id] #=> Refactor checking this into a Helpers method?
@@ -30,8 +28,6 @@ class WordcountsController < ApplicationController
             wordcount = Helpers.current_user(session).wordcounts.create(params)
             # wordcount = Wordcount.create(params)
             redirect "/counts/#{wordcount.id}"
-        # else
-        #     redirect "/counts/new"
         end
     end
 
@@ -59,7 +55,6 @@ class WordcountsController < ApplicationController
     end
 
     patch '/counts/:id' do
-        #binding.pry
         if !Helpers.logged_in?(session)
             redirect "/login"
         else
@@ -70,12 +65,7 @@ class WordcountsController < ApplicationController
             elsif Helpers.delete_empty_keys(params).empty?
                 redirect "/counts/#{@wordcount.id}/edit"
             else
-                # Will @wordcount even accept an `.update` if it's supposed to accept an integer and instead gets a string?
-                ### Seriously, would it be easier to make a method for converting everything `.to_i` instead of typing everytime? 
-                # ^ Would above tie into Helpers refactoring? 
-                # params.each { |k, v| params[k] = v.to_i }
                 Helpers.ready_for_update(params) #=> Deletes empty keys, deletes "_method" key, converts all string values into integers
-                # binding.pry
                 @wordcount.update(params)
                 redirect "/counts/#{@wordcount.id}/edit"
             end

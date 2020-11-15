@@ -1,7 +1,10 @@
+<h3><%=@wordcount.user.username%></h3>
 <p><%= "#{@wordcount.month}/#{@wordcount.day}/#{@wordcount.year}" %></p>
 <p><%= "#{@wordcount.count}" %></p>
 
+<% # if Helpers.current_user(session) == @wordcount.user %>
 <p><a href="/counts/<%=@wordcount.id%>/edit">Edit Entry</a></p>
+<% # end %>
 
 <form action="/counts/<%=@wordcount.id%>" method="post">
     <input id="hidden" type="hidden" name="_method" value="DELETE">

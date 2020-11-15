@@ -10,6 +10,8 @@ class UsersController < ApplicationController
     post '/signup' do
         if params[:username] == "" || params[:password] == "" || params[:email] == "" #=> Every field has to be filled out. Have to check for duplicates later
             redirect "/signup"
+        elsif !!User.find_by(username: params[:username]) || !!User.find_by(email: params[:email])
+            redirect "/signup"
         else
             user = User.create(username: params[:username], password: params[:password], email: params[:email])
             session[:user_id] = user.id

@@ -4,3 +4,5 @@
     <% @wordcounts.each do |wcount| %>
     <p><%="#{wcount.month}/#{wcount.day}/#{wcount.year} — #{wcount.count}"%> — <a href="/counts/<%=wcount.id%>/edit">Edit?</a><br></p>
     <% end %>
+
+    <p><a href="/logout">Logout?</a></p>
