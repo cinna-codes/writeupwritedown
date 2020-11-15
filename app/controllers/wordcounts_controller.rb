@@ -48,7 +48,7 @@ class WordcountsController < ApplicationController
         if !Helpers.logged_in?(session)
             redirect "/login"
         else
-            # binding.pry
+            #binding.pry
             @wordcount = Wordcount.find(params[:id])
             if @wordcount.user_id != session[:user_id]
                 redirect "/counts/#{params[:id]}"
@@ -59,6 +59,7 @@ class WordcountsController < ApplicationController
     end
 
     patch '/counts/:id' do
+        binding.pry
         if !Helpers.logged_in?(session)
             redirect "/login"
         else
