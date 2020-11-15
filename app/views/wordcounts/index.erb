@@ -1,4 +1,4 @@
-<h2>Total Word Count across all Users: <%=@wordcounts.map { |wc| wc.count }.sum %> </h2>
+<h2>Total wordcounts across all users: <%=@wordcounts.map { |wc| wc.count }.sum %> </h2>
     <% @wordcounts.each do |wcount| %>
     <p><%="#{wcount.month}/#{wcount.day}/#{wcount.year} — #{wcount.count} —  "%><a href="/users/<%=wcount.user.slug%>"><%="#{wcount.user.username}"%></a><br></p>
     <% end %>

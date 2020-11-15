@@ -1,9 +1,10 @@
+<h2>New Entry</h2>
 <form action="/counts" method="post">
     <% # params[:user_id] = session[:user_id] %>
-    Wordcount: <input type="text" name="count"><br>
-    Year: <input type="text" name="year"><br>
-    Month: <input type="text" name="month"><br>
-    Day: <input type="text" name="day"><br>
-
-    <input type="submit" value="Submit">
+    <p>Wordcount: <input type="text" name="count"></p>
+    <p>Year: <input type="text" name="year"></p>
+    <p>Month: <input type="text" name="month"></p>
+    <p>Day: <input type="text" name="day"></p>
+    <p><i>Note: You cannot enter anything other than numbers over 0 and real dates. "1080" is okay, but "1,080" is not.</i></p>
+    <p><input type="submit" value="Submit"></p>
 </form>

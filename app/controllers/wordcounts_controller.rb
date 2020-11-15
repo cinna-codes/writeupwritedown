@@ -23,11 +23,15 @@ class WordcountsController < ApplicationController
             redirect "/login"
         elsif !params.select { |k,v| v.empty? }.empty? # CHECK IF ANY FIELDS ARE EMPTY: having empty fields returns "FALSE" and NO empty fields returns "TRUE"
             redirect "/counts/new"
-        else # Helpers.current_user(session).id == params[:user_id] #=> Refactor checking this into a Helpers method?
+        else 
             Helpers.convert_to_i(params) #=> Converts all string values into integers
+        end
+
+        if Wordcount.valid_date?(params)
             wordcount = Helpers.current_user(session).wordcounts.create(params)
-            # wordcount = Wordcount.create(params)
             redirect "/counts/#{wordcount.id}"
+        else
+            redirect "/counts/new"
         end
     end
 
