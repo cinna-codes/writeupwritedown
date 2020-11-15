@@ -1,0 +1,7 @@
+<p><%= "#{@wordcount.count}" %></p>
+
+<p><a href="/counts/<%=@wordcount.id%>/edit">Edit Entry</a></p>
+
+<form action="/counts/<%=@wordcount.id%>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <p><input type="submit" value="Delete Entry"></p>

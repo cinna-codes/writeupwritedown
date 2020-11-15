@@ -1,0 +1,5 @@
+<h3><%= "#{@user.username}'s Profile" %></h3>
+
+    <% @wordcounts.each do |wcount| %>
+    <p><%="#{wcount.month}/#{wcount.day}/#{wcount.year} — #{wcount.count}" %><br></p>
+    <% end %>
