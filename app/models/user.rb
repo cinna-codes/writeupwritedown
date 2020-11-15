@@ -10,3 +10,13 @@ class User < ActiveRecord::Base
         User.all.find { |user| user.slug == slug }
     end
 end
+
+# test users:
+
+# writewritewrite
+# pass
+# write@test.com
+
+# Inky
+# pass
+# inky@test.com

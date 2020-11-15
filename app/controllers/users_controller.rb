@@ -44,17 +44,6 @@ class UsersController < ApplicationController
             redirect "/login"
     end
 
-    # get '/users/:id' do #=> Should I do by slug instead? If usernames will be coded to be unique anyway...
-    #     if !Helpers.logged_in?(session)
-    #         redirect "/login"
-    #     else
-    #         @user = User.find(params[:id])
-    #         @wordcounts = @user.wordcounts.sort_by { |count| [count[:year], count[:month], count[:day], count[:id]] }.reverse
-    #         erb :'users/show'
-    #     end
-    # end
-
-
     get '/users/:slug' do
         if !Helpers.logged_in?(session)
             redirect "/login"
