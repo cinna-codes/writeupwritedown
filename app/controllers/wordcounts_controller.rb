@@ -4,8 +4,8 @@ class WordcountsController < ApplicationController
         if !Helpers.logged_in?(session)
             redirect "/login"
         else
-            @user = User.find(session[:user_id])
-            @wordcounts = Wordcount.all
+            # @user = User.find(session[:user_id])
+            @wordcounts = Wordcount.all.sort_by { |count| [count[:year], count[:month], count[:day], count[:id]] }.reverse
             erb :'wordcounts/index'
         end
     end
@@ -48,7 +48,7 @@ class WordcountsController < ApplicationController
         if !Helpers.logged_in?(session)
             redirect "/login"
         else
-            #binding.pry
+            # binding.pry
             @wordcount = Wordcount.find(params[:id])
             if @wordcount.user_id != session[:user_id]
                 redirect "/counts/#{params[:id]}"
@@ -59,7 +59,7 @@ class WordcountsController < ApplicationController
     end
 
     patch '/counts/:id' do
-        binding.pry
+        #binding.pry
         if !Helpers.logged_in?(session)
             redirect "/login"
         else
@@ -67,14 +67,15 @@ class WordcountsController < ApplicationController
             # params.each { |k, v| params.delete(k) if v.empty? }
             if @wordcount.user_id != session[:user_id]
                 redirect "/counts/#{@wordcount.id}"
-            elsif params.empty?
+            elsif Helpers.delete_empty_keys(params).empty?
                 redirect "/counts/#{@wordcount.id}/edit"
             else
                 # Will @wordcount even accept an `.update` if it's supposed to accept an integer and instead gets a string?
                 ### Seriously, would it be easier to make a method for converting everything `.to_i` instead of typing everytime? 
                 # ^ Would above tie into Helpers refactoring? 
                 # params.each { |k, v| params[k] = v.to_i }
-                Helpers.ready_for_update(params) #=> Deletes empty keys, converts all string values into integers
+                Helpers.ready_for_update(params) #=> Deletes empty keys, deletes "_method" key, converts all string values into integers
+                # binding.pry
                 @wordcount.update(params)
                 redirect "/counts/#{@wordcount.id}/edit"
             end

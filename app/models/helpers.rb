@@ -17,6 +17,7 @@ class Helpers
 
     def self.ready_for_update(params_hash = {})
         Helpers.delete_empty_keys(params_hash) #=> Have to delete empty keys first, because calling `.empty?` on an integer throws an error e.g. `2.empty?`
+        params_hash.each { |k, v| params_hash.delete(k) if k == "_method" }
         Helpers.convert_to_i(params_hash)
     end
 end

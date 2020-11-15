@@ -47,7 +47,7 @@ class UsersController < ApplicationController
             redirect "/login"
         else
             @user = User.find(params[:id])
-            @wordcounts = @user.wordcounts # is `.wordcounts` the right method? Can I sort them by date here instead of in the view? How?
+            @wordcounts = @user.wordcounts.sort_by { |count| [count[:year], count[:month], count[:day], count[:id]] }.reverse # is `.wordcounts` the right method? Can I sort them by date here instead of in the view? How?
             # .sort_by { |count| [count[:year], count[:month], count[:day], count[:id]] }.reverse #=>???
             erb :'users/show'
         end
