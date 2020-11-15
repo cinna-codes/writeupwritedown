@@ -1,3 +1,3 @@
     <% @wordcounts.each do |wcount| %>
-    <p><%="#{wcount.month}/#{wcount.day}/#{wcount.year} — #{wcount.count} — #{wcount.user.username}" %><br></p>
+    <p><%="#{wcount.month}/#{wcount.day}/#{wcount.year} — #{wcount.count} —  "%><a href="/users/<%=wcount.user.slug%>"><%="#{wcount.user.username}"%></a><br></p>
     <% end %>
