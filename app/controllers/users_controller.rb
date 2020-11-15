@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       end
 
     post '/signup' do
-        if params[:username] == "" || params[:password] == "" || params[:email] == ""
+        if params[:username] == "" || params[:password] == "" || params[:email] == "" #=> Every field has to be filled out. Have to check for duplicates later
             redirect "/signup"
         else
             user = User.create(username: params[:username], password: params[:password], email: params[:email])
