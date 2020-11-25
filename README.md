@@ -9,7 +9,7 @@ WriteUpWriteDown is an app for tracking your daily wordcount. This is useful for
 3. Now click on the green "Code" button on the top right, change it from "HTTPS" to "SSH", then click COPY.
 4. In your terminal, type git clone LINK-YOU-JUST-COPIED
 5. Still in your terminal, type bundle install 
-*** I suggest that you pin the location of the Astrologian folder so you never lose it.
+*** I suggest that you pin the location of the project folder so you never lose it.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
