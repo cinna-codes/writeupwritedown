@@ -20,4 +20,6 @@ class Helpers
         params_hash.each { |k, v| params_hash.delete(k) if k == "_method" }
         Helpers.convert_to_i(params_hash)
     end
+
+    # Refactor conditionals that redirect based on `if logged_in` etc. to these Helper methods
 end
